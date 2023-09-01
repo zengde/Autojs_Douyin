@@ -4,7 +4,8 @@ const { strToNumber, randomRun, randomSwipe, randomSleep } = require('../utils/u
  * 切换到APP首页界面
  */
 function toIndexPage () {
-  const homePage = id("com.ss.android.ugc.aweme:id/p+d").text("首页").findOne(10000)
+  //const homePage = id("com.ss.android.ugc.aweme:id/x4").text("首页").findOne(10000)
+  const homePage = id("com.ss.android.ugc.aweme:id/ufm").findOne(10000)
 
   if (homePage && homePage.parent()) {
     homePage.parent().click()
@@ -54,7 +55,7 @@ function videoLikeCommentCollect (params, callback) {
   // 时间到了，关闭线程
   likeCommentCollectThreads.interrupt()
   // 判断评论框有没有被打开，有的话先关闭
-  if (id("com.ss.android.ugc.aweme:id/fm9").exists()) {
+  if (id("com.ss.android.ugc.aweme:id/daa").exists()) {
     id("com.ss.android.ugc.aweme:id/back_btn").findOne().click()
     randomSleep(1000)
   }
@@ -81,7 +82,7 @@ function videoLikeCommentCollect (params, callback) {
 function startLike (params) {
   try {
     log("=====开始判断是否点赞=====")
-    const likeEl = id("com.ss.android.ugc.aweme:id/dun").visibleToUser().findOne(3000)
+    const likeEl = id("com.ss.android.ugc.aweme:id/evu").visibleToUser().findOne(3000)
     let isUnlike = true // 当前是否未点赞
     let likeAmount = 0
     if (likeEl) {
@@ -121,7 +122,7 @@ function startLike (params) {
 function startComment (params) {
   try {
     log("=====开始判断是否评论=====")
-    const commentEl = id("com.ss.android.ugc.aweme:id/ct4").visibleToUser().findOne(3000)
+    const commentEl = id("com.ss.android.ugc.aweme:id/dfy").visibleToUser().findOne(3000)
     let commentAmount = 0
     if (commentEl) {
       const descList = commentEl.desc().split('，')
@@ -144,10 +145,11 @@ function startComment (params) {
         const commentList = params.commentContent().split('\n')
         let comment = commentList.length > 0 ? commentList[random(0, commentList.length - 1)] : defaultComment
         comment = !!comment ? comment : defaultComment
-        id("com.ss.android.ugc.aweme:id/cp+").findOne().setText(comment)
+        id("com.ss.android.ugc.aweme:id/daa").findOne().setText(comment)
         randomSleep(500)
         // 发送
-        id("com.ss.android.ugc.aweme:id/cr7").findOne().click()
+        //id("com.ss.android.ugc.aweme:id/cr7").findOne().click()
+        KeyCode("KEYCODE_ENTER")
         randomSleep(200)
         // 返回
         id("com.ss.android.ugc.aweme:id/back_btn").findOne().click()
@@ -178,7 +180,7 @@ function startComment (params) {
 function startCollect (params) {
   try {
     log("=====开始判断是否收藏=====")
-    const collectEl = id("com.ss.android.ugc.aweme:id/cmt").visibleToUser().findOne(3000)
+    const collectEl = id("com.ss.android.ugc.aweme:id/c=b").visibleToUser().findOne(3000)
     let isUnCollect = true // 当前是否未收藏
     let collectAmount = 0
     if (collectEl) {
